@@ -1,6 +1,6 @@
 ' Gambas class file
 
-Public Const FileName As String = "/home/matthew/Documents/gb.wav/Piano/16.wav"
+Public Const FileName As String = "Piano/3C.wav" '3E '3G
 
 Static Public Sub Main()
 

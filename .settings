@@ -2,7 +2,8 @@
 WavFile=[7]
 
 [Breakpoints]
-Count=0
+Count=1
+Breakpoint[1]="WavFileReader.23"
 
 [DebugWindow]
 Count=0
@@ -36,8 +37,8 @@ Path="gb.wav.gambas"
 
 [OpenFile]
 Count=1
-File[1]=".src/Data/Reader/WavFileReader.class:0.71"
 Active=1
+File[1]=".src/Data/Reader/WavFileReader.class:13.20"
 
 [Watches]
 Count=0
