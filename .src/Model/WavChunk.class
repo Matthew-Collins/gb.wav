@@ -1,0 +1,4 @@
+' Gambas class file
+
+Public ChunkId As String 'Four bytes: "fmt ", "data", "fact", etc.
+Public ChunkSize As Long 'Length Of header In bytes

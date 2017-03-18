@@ -1,0 +1,9 @@
+# Gambas Project File 3.0
+# Compiled with Gambas 3.9.2
+Title=gb.wav
+Startup=Test_001_Read_Wav_File
+Version=0.0.5
+TabSize=2
+Translate=1
+Language=en_US
+Packager=1

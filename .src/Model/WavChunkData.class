@@ -1,0 +1,7 @@
+' Gambas class file
+
+Inherits WavChunk
+
+'Different arrays For the different frame sizes
+Public ByteArray As Byte[] '8 bit unsigned data; or...
+Public ShortArray As Short[] '16 bit signed data

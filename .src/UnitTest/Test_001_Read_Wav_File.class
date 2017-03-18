@@ -1,0 +1,9 @@
+' Gambas class file
+
+Public Const FileName As String = "/home/matthew/Documents/gb.wav/Piano/16.wav"
+
+Static Public Sub Main()
+
+  Dim WavFile As WavFile = WavFileReader.ReadFile(Me.FileName)
+
+End

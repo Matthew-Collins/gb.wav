@@ -1,0 +1,8 @@
+' Gambas class file
+
+Public GroupID As String 'Surprisingly enough, this Is Always "RIFF"
+Public FileLength As Long 'File length In bytes, measured From offset 8
+Public RiffType As String 'In wave files, this Is Always "WAVE"
+
+Public FormatChunks As New WavChunk[]
+Public DataChunks As New WavChunk[]
