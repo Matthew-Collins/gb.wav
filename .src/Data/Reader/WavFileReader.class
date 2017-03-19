@@ -82,9 +82,9 @@ Static Private Function ReadInteger(OpenFile As File, Length As Integer) As Inte
   Dim Data As Byte
   Dim x As Integer
 
-  For x = 1 To Length
+  For x = 0 To Length - 1
     Read #OpenFile, Data
-    If x = 1 Then
+    If x = 0 Then
       Returnvalue = Data
     Else
       ReturnValue += Data * (2 ^ (8 * x))
