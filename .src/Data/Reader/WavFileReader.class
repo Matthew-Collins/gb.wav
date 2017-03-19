@@ -87,7 +87,7 @@ Static Private Function ReadInteger(OpenFile As File, Length As Integer) As Inte
     If x = 0 Then
       Returnvalue = Data
     Else
-      ReturnValue += Data * 2 ^ 8 * x
+      ReturnValue += Data * (2 ^ (8 * x))
     Endif
   Next
   Return ReturnValue
