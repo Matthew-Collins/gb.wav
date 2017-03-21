@@ -1,0 +1,5 @@
+' Gambas class file
+
+Inherits WavChunk
+
+Public NumSamples As Long 'Number Of audio frames

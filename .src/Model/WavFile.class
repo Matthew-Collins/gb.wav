@@ -6,3 +6,4 @@ Public RiffType As String 'In wave files, this Is Always "WAVE"
 
 Public FormatChunks As New WavChunk[]
 Public DataChunks As New WavChunk[]
+Public FactChunks As New WavChunk[]

@@ -7,4 +7,4 @@ Public Channels As Integer 'Number Of channels
 Public SamplesPerSec As Long  'Frequency Of the audio In Hz
 Public AvgBytesPerSec As Long 'For estimating RAM allocation
 Public BlockAlign As Integer 'Sample frame size In bytes
-Public BitsPerSample As Long 'Bits per sample
+Public BitsPerSample As Integer 'Bits per sample

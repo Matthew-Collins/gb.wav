@@ -6,4 +6,8 @@ Static Public Sub Main()
 
   Dim WavFile As WavFile = WavFileReader.ReadFile(Me.FileName)
 
+  Print "Format: " & WavFile.FormatChunks.Count
+  Print "Data: " & WavFile.DataChunks.Count
+  Print "Fact: " & WavFile.FactChunks.Count
+
 End

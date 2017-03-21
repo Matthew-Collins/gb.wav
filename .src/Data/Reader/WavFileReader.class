@@ -10,7 +10,10 @@ Static Public Function ReadFile(FileName As String) As WavFile
   Dim DataFile As File
   Dim FormatChunk As WavChunkFormat
   Dim DataChunk As WavChunkData
+  Dim FactChunk As WavChunkFact
   Dim ChunkId As String
+  Dim x As Integer
+  Dim Data As Byte
 
   DataFile = Open FileName For Read
 
@@ -24,31 +27,43 @@ Static Public Function ReadFile(FileName As String) As WavFile
         State = State_InChunk
 
       Case State_InChunk
-        ChunkId = Trim(Lower(ReadString(DataFile, 4)))
+        ChunkId = Lower(ReadString(DataFile, 4))
         Select Case ChunkId
 
-          Case "fmt"
+          Case "fmt "
             FormatChunk = New WavChunkFormat
             With FormatChunk
-              .ChunkID = "fmt"
-              .ChunkSize = ReadInteger(DataFile, 4)
+              .ChunkID = ChunkId
+              .ChunkSize = ReadLong(DataFile, 4)
               .FormatTag = ReadInteger(DataFile, 2)
               .Channels = ReadInteger(DataFile, 2)
-              .SamplesPerSec = ReadInteger(DataFile, 4)
-              .AvgBytesPerSec = ReadInteger(DataFile, 4)
+              .SamplesPerSec = ReadLong(DataFile, 4)
+              .AvgBytesPerSec = ReadLong(DataFile, 4)
               .BlockAlign = ReadInteger(DataFile, 2)
-              .BitsPerSample = ReadInteger(DataFile, 4)
+              .BitsPerSample = ReadInteger(DataFile, 2)
             End With
             Model.FormatChunks.Add(FormatChunk)
 
           Case "data"
             DataChunk = New WavChunkData
             With DataChunk
-              .ChunkID = "data"
-              .ChunkSize = ReadInteger(DataFile, 4)
-
+              .ChunkID = ChunkId
+              .ChunkSize = ReadLong(DataFile, 4)
+              For x = 1 To .ChunkSize
+                Read #DataFile, Data
+                .ByteArray.Add(Data)
+              Next
             End With
             Model.DataChunks.Add(DataChunk)
+
+          Case "fact"
+            FactChunk = New WavChunkFact
+            With FactChunk
+              .ChunkID = ChunkId
+              .ChunkSize = ReadLong(DataFile, 4)
+              .NumSamples = ReadLong(DataFile, 4)
+            End With
+            Model.FactChunks.Add(DataChunk)
 
           Case Else
             Print "Found: Chunk Id: " & ChunkId
@@ -79,6 +94,24 @@ End
 Static Private Function ReadInteger(OpenFile As File, Length As Integer) As Integer
 
   Dim ReturnValue As Integer
+  Dim Data As Byte
+  Dim x As Integer
+
+  For x = 0 To Length - 1
+    Read #OpenFile, Data
+    If x = 0 Then
+      Returnvalue = Data
+    Else
+      ReturnValue += Data * (2 ^ (8 * x))
+    Endif
+  Next
+  Return ReturnValue
+
+End
+
+Static Private Function ReadLong(OpenFile As File, Length As Integer) As Long
+
+  Dim ReturnValue As Long
   Dim Data As Byte
   Dim x As Integer
 
