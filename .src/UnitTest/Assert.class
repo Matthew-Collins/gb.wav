@@ -1,0 +1,54 @@
+' Gambas class file
+
+Static Public Section As String
+Static Public Test As String
+Static Public Part As String
+
+Static Public Function IsTrue(Value As Boolean, Comment As String) As Boolean
+
+  Print If(Value, "[  Pass  ]", "[ Failed ]");
+
+  If Section Then Print " " & Section & " > ";
+  If Test Then Print Test & "... ";
+  If Part Then Print Part & "... ";
+
+  If Value Then
+    Print ""
+  Else
+    Print Comment
+  Endif
+
+  Part = ""
+  Return Value
+
+End
+
+Static Public Function IsFalse(Value As Boolean, Comment As String) As Boolean
+
+  Return IsTrue(Not Value, Comment)
+
+End
+
+Static Public Function IsExpected(Actual As String, Expected As String, Comment As String) As Boolean
+
+  Dim Result As Boolean = IsTrue(Actual = Expected, Comment)
+
+  If Not Result Then
+    Print "Actual:   " & Actual
+    Print "Expected: " & Expected
+  Endif
+  Return Result
+
+End
+
+Static Public Function IsNotExpected(Actual As String, Expected As String, Comment As String) As Boolean
+
+  Dim Result As Boolean = IsFalse(Actual = Expected, Comment)
+
+  If Not Result Then
+    Print "Actual:   " & Actual
+    Print "Expected: " & Expected
+  Endif
+  Return Result
+
+End

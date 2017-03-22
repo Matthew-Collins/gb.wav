@@ -49,10 +49,17 @@ Static Public Function ReadFile(FileName As String) As WavFile
             With DataChunk
               .ChunkID = ChunkId
               .ChunkSize = ReadLong(DataFile, 4)
-              For x = 1 To .ChunkSize
-                Read #DataFile, Data
-                .ByteArray.Add(Data)
-              Next
+
+              If FormatChunk And If FormatChunk.BitsPerSample = 16 Then
+                For x = 1 To .ChunkSize Step 2
+                  .ShortArray.Add(ReadSignedShort(datafile, 2))
+                Next
+              Else
+                For x = 1 To .ChunkSize
+                  .ByteArray.Add(ReadByte(DataFile))
+                Next
+              Endif
+
             End With
             Model.DataChunks.Add(DataChunk)
 
@@ -73,7 +80,18 @@ Static Public Function ReadFile(FileName As String) As WavFile
     End Select
   Loop
 
+  DataFile.Close
+
   Return Model
+
+End
+
+Static Private Function ReadByte(OpenFile As File) As Byte
+
+  Dim Data As Byte
+
+  Read #OpenFile, Data
+  Return Data
 
 End
 
@@ -106,6 +124,35 @@ Static Private Function ReadInteger(OpenFile As File, Length As Integer) As Inte
     Endif
   Next
   Return ReturnValue
+
+End
+
+Static Private Function ReadSignedShort(OpenFile As File, Length As Integer) As Short
+
+  Dim ReturnValue As Short
+  Dim Data As Byte
+  Dim x As Integer
+
+  For x = 0 To Length - 1
+    Read #OpenFile, Data
+    If x = 0 Then
+      Returnvalue = Data
+    Else
+      ReturnValue += Data * (2 ^ (8 * x))
+    Endif
+  Next
+
+  Return cSigned(ReturnValue)
+
+End
+
+Static Private Function cSigned(Value As Short) As Short
+
+  If Value < 32768
+    Return Value
+  Else
+    Return Value - 65536
+  End If
 
 End
 

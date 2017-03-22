@@ -1,1 +1,53 @@
 ' Gambas class file
+
+Static Public Sub WriteFile(Model As WavFile, FileName As String)
+
+  Dim DataFile As File
+  Dim FormatChunk As WavChunkFormat
+  Dim DataChunk As WavChunkData
+  Dim FactChunk As WavChunkFact
+  Dim ShortValue As Short
+  Dim ByteValue As Byte
+
+  DataFile = Open FileName For Write Create
+
+  Write #DataFile, Model.GroupID
+  Write #DataFile, Model.FileLength As Integer
+  Write #DataFile, Model.RiffType
+
+  For Each FormatChunk In Model.FormatChunks
+    Write #DataFile, FormatChunk.ChunkID
+    Write #DataFile, FormatChunk.ChunkSize As Integer
+    Write #DataFile, FormatChunk.FormatTag As Short
+    Write #DataFile, FormatChunk.Channels As Short
+    Write #DataFile, FormatChunk.SamplesPerSec As Integer
+    Write #DataFile, FormatChunk.AvgBytesPerSec As Integer
+    Write #DataFile, FormatChunk.BlockAlign As Short
+    Write #DataFile, FormatChunk.BitsPerSample As Short
+  Next
+
+  For Each DataChunk In Model.DataChunks
+    Write #DataFile, DataChunk.ChunkID
+    Write #DataFile, DataChunk.ChunkSize As Integer
+
+    If DataChunk.ShortArray.Count > 0 Then
+      For Each ShortValue In DataChunk.ShortArray
+        Write #DataFile, ShortValue As Short
+      Next
+    Else
+      For Each ByteValue In DataChunk.ByteArray
+        Write #DataFile, ByteValue As Byte
+      Next
+    Endif
+
+  Next
+
+  For Each FactChunk In Model.FactChunks
+    Write #DataFile, FactChunk.ChunkID
+    Write #DataFile, FactChunk.ChunkSize As Integer
+    Write #DataFile, FactChunk.NumSamples As Integer
+  Next
+
+  DataFile.Close
+
+End

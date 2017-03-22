@@ -1,0 +1,40 @@
+' Gambas class file
+
+Public Const FileName As String = "Piano/3C.wav"
+Public Const NewFileName As String = "/home/matthew/Documents/gb.wav/Piano/3C (copy).wav"
+
+Static Public Sub Main()
+
+  Dim WavFile As WavFile = WavFileReader.ReadFile(Me.FileName)
+
+  WavFileWriter.WriteFile(WavFile, NewFileName)
+
+  CompareFile(FileName, NewFileName)
+
+End
+
+Static Public Sub CompareFile(FileName1 As String, FileName2 As String)
+
+  Dim DataFile1 As File
+  Dim DataFile2 As File
+  Dim Data1 As Byte
+  Dim Data2 As Byte
+  Dim Count As Integer
+
+  DataFile1 = Open FileName1 For Read
+  DataFile2 = Open FileName2 For Read
+
+  Assert.Section = "Compare Files"
+  Assert.Test = "File Size"
+  Assert.IsExpected(Stat(FileName1).Size, Stat(FileName2).Size, "Files Different Sizes")
+
+  Do While Not Eof(DataFile1) And Not Eof(DataFile2)
+    Read #DataFile1, Data1
+    Read #DataFile2, Data2
+    Assert.Test = "Byte Compare"
+    Assert.Part = Count
+    Assert.IsExpected(Data1, Data2, "Data Mismatch Found")
+    Count += 1
+  Loop
+
+End
