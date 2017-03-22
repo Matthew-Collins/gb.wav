@@ -7,3 +7,29 @@ Public RiffType As String 'In wave files, this Is Always "WAVE"
 Public FormatChunks As New WavChunk[]
 Public DataChunks As New WavChunk[]
 Public FactChunks As New WavChunk[]
+
+Public Sub Mute_Stereo_Left()
+
+  Dim DataChunk As WavChunkData
+  Dim x As Integer
+
+  For Each DataChunk In Me.DataChunks
+    For x = 0 To DataChunk.ShortArray.Count - 1 Step 2
+      DataChunk.ShortArray[x] = 0
+    Next
+  Next
+
+End
+
+Public Sub Mute_Stereo_Right()
+
+  Dim DataChunk As WavChunkData
+  Dim x As Integer
+
+  For Each DataChunk In Me.DataChunks
+    For x = 1 To DataChunk.ShortArray.Count - 1 Step 2
+      DataChunk.ShortArray[x] = 0
+    Next
+  Next
+
+End

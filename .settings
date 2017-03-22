@@ -47,9 +47,7 @@ Geometry=[424,389,487,280]
 Path="gb.wav.gambas"
 
 [OpenFile]
-Count=1
-Active=1
-File[1]=".src/Model/WavFile.class:0.9"
+Count=0
 
 [Watches]
 Count=0

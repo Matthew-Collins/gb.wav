@@ -1,19 +1,6 @@
 ' Gambas class file
 
-Public Const FileName As String = "Piano/3C.wav"
-Public Const NewFileName As String = "/home/matthew/Documents/gb.wav/Piano/3C (copy).wav"
-
-Static Public Sub Main()
-
-  Dim WavFile As WavFile = WavFileReader.ReadFile(Me.FileName)
-
-  WavFileWriter.WriteFile(WavFile, NewFileName)
-
-  CompareFile(FileName, NewFileName)
-
-End
-
-Static Public Sub CompareFile(FileName1 As String, FileName2 As String)
+Static Public Sub Compare(FileName1 As String, FileName2 As String)
 
   Dim DataFile1 As File
   Dim DataFile2 As File

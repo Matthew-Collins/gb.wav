@@ -1,0 +1,14 @@
+' Gambas class file
+
+Static Public FileName As String = "Piano/3C.wav"
+Static Public NewFileName As String = User.Home &/ "Documents/3C (copy).wav"
+
+Static Public Sub Main()
+
+  Dim Wav As WavFile = WavFileReader.ReadFile(Me.FileName)
+
+  Wav.Mute_Stereo_Left
+
+  WavFileWriter.WriteFile(Wav, NewFileName)
+
+End

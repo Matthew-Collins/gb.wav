@@ -1,7 +1,7 @@
 # Gambas Project File 3.0
 # Compiled with Gambas 3.9.2
 Title=gb.wav
-Startup=Test_001_Write_Wav_File
+Startup=Test_004_Mute_Right_Stero_Channels
 Version=0.0.5
 TabSize=2
 Translate=1
