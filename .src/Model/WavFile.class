@@ -4,9 +4,9 @@ Public GroupID As String 'Surprisingly enough, this Is Always "RIFF"
 Public FileLength As Long 'File length In bytes, measured From offset 8
 Public RiffType As String 'In wave files, this Is Always "WAVE"
 
-Public FormatChunks As New WavChunk[]
-Public DataChunks As New WavChunk[]
-Public FactChunks As New WavChunk[]
+Public FormatChunks As New WavChunkFormat[]
+Public DataChunks As New WavChunkData[]
+Public FactChunks As New WavChunkFact[]
 
 Public Sub Mute_Stereo_Left()
 

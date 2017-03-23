@@ -1,0 +1,22 @@
+' Gambas class file
+
+Static Public FileName1 As String = "Piano/3C.wav"
+Static Public FileName2 As String = "Piano/3E.wav"
+Static Public FileName3 As String = "Piano/3G.wav"
+Static Public NewFileName As String = User.Home &/ "Documents/3C-3E-EG.wav"
+
+Static Public Sub Main()
+
+  Dim Wave1 As WavFile = WavFileReader.ReadFile(Me.FileName1)
+  Dim Wave2 As WavFile = WavFileReader.ReadFile(Me.FileName2)
+  Dim Wave3 As WavFile = WavFileReader.ReadFile(Me.FileName3)
+
+  Dim Waves As New WavFiles
+
+  Waves.Files.Add(Wave1)
+  Waves.Files.Add(Wave2)
+  Waves.Files.Add(Wave3)
+
+  Waves.Merge(NewFileName)
+
+End

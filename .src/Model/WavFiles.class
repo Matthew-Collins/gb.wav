@@ -1,0 +1,21 @@
+' Gambas class file
+
+Public Files As New WavFile[]
+
+Public Sub Merge(FileName As String)
+
+  Dim Base As WavFile = Me.Files[0]
+  Dim x As Integer
+  Dim y As Integer
+
+  For x = 1 To Me.Files.Count - 1
+    For y = 0 To Base.DataChunks[0].ShortArray.Count - 1
+      Base.DataChunks[0].ShortArray[y] += Me.Files[x].DataChunks[0].ShortArray[y]
+    Next
+  Next
+
+  WavFileWriter.WriteFile(Base, FileName)
+
+  Me.Files.Clear
+
+End
