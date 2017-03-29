@@ -8,6 +8,31 @@ Public FormatChunks As New WavChunkFormat[]
 Public DataChunks As New WavChunkData[]
 Public FactChunks As New WavChunkFact[]
 
+Public Function NewFileLength() As Long
+
+  Dim ReturnValue As Long
+  Dim FormatChunk As WavChunkFormat
+  Dim DataChunk As WavChunkData
+  Dim FactChunk As WavChunkFact
+
+  ReturnValue += 4
+
+  For Each FormatChunk In Me.FormatChunks
+    ReturnValue += 24
+  Next
+
+  For Each DataChunk In Me.DataChunks
+    ReturnValue += DataChunk.NewChunkSize() + 8
+  Next
+
+  For Each FactChunk In Me.FactChunks
+    ReturnValue += 12
+  Next
+
+  Return ReturnValue
+
+End
+
 Public Sub Mute_Stereo_Left()
 
   Dim DataChunk As WavChunkData

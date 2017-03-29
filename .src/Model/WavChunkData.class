@@ -5,3 +5,13 @@ Inherits WavChunk
 'Different arrays For the different frame sizes
 Public ByteArray As New Byte[] '8 bit unsigned data; or...
 Public ShortArray As New Short[] '16 bit signed data
+
+Public Function NewChunkSize() As Long
+
+  If Me.ShortArray.Count > 0 Then
+    Return Me.ShortArray.Count * 2
+  Else
+    Return Me.ByteArray.Count
+  End If
+
+End

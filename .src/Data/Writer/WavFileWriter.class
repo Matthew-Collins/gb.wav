@@ -12,23 +12,23 @@ Static Public Sub WriteFile(Model As WavFile, FileName As String)
   DataFile = Open FileName For Write Create
 
   Write #DataFile, Model.GroupID
-  Write #DataFile, Model.FileLength As Integer
+  Write #DataFile, cSignedInteger(Model.NewFileLength()) As Integer
   Write #DataFile, Model.RiffType
 
   For Each FormatChunk In Model.FormatChunks
     Write #DataFile, FormatChunk.ChunkID
-    Write #DataFile, FormatChunk.ChunkSize As Integer
-    Write #DataFile, FormatChunk.FormatTag As Short
-    Write #DataFile, FormatChunk.Channels As Short
-    Write #DataFile, FormatChunk.SamplesPerSec As Integer
-    Write #DataFile, FormatChunk.AvgBytesPerSec As Integer
-    Write #DataFile, FormatChunk.BlockAlign As Short
-    Write #DataFile, FormatChunk.BitsPerSample As Short
+    Write #DataFile, cSignedInteger(FormatChunk.ChunkSize) As Integer
+    Write #DataFile, cSignedShort(FormatChunk.FormatTag) As Short
+    Write #DataFile, cSignedShort(FormatChunk.Channels) As Short
+    Write #DataFile, cSignedInteger(FormatChunk.SamplesPerSec) As Integer
+    Write #DataFile, cSignedInteger(FormatChunk.AvgBytesPerSec) As Integer
+    Write #DataFile, cSignedShort(FormatChunk.BlockAlign) As Short
+    Write #DataFile, cSignedShort(FormatChunk.BitsPerSample) As Short
   Next
 
   For Each DataChunk In Model.DataChunks
     Write #DataFile, DataChunk.ChunkID
-    Write #DataFile, DataChunk.ChunkSize As Integer
+    Write #DataFile, cSignedInteger(DataChunk.NewChunkSize()) As Integer
 
     If DataChunk.ShortArray.Count > 0 Then
       For Each ShortValue In DataChunk.ShortArray
@@ -44,10 +44,30 @@ Static Public Sub WriteFile(Model As WavFile, FileName As String)
 
   For Each FactChunk In Model.FactChunks
     Write #DataFile, FactChunk.ChunkID
-    Write #DataFile, FactChunk.ChunkSize As Integer
-    Write #DataFile, FactChunk.NumSamples As Integer
+    Write #DataFile, cSignedInteger(FactChunk.ChunkSize) As Integer
+    Write #DataFile, cSignedInteger(FactChunk.NumSamples) As Integer
   Next
 
   DataFile.Close
+
+End
+
+Static Public Function cSignedInteger(Value As Long) As Integer
+
+  If Value < 2147483648
+    Return Value
+  Else
+    Return Value - 4294967296
+  End If
+
+End
+
+Static Private Function cSignedShort(Value As Integer) As Short
+
+  If Value < 32768
+    Return Value
+  Else
+    Return Value - 65536
+  End If
 
 End

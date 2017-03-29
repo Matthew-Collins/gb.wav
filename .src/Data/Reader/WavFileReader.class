@@ -129,7 +129,7 @@ End
 
 Static Private Function ReadSignedShort(OpenFile As File, Length As Integer) As Short
 
-  Dim ReturnValue As Short
+  Dim ReturnValue As Integer
   Dim Data As Byte
   Dim x As Integer
 
@@ -146,7 +146,7 @@ Static Private Function ReadSignedShort(OpenFile As File, Length As Integer) As 
 
 End
 
-Static Private Function cSigned(Value As Short) As Short
+Static Private Function cSigned(Value As Integer) As Short
 
   If Value < 32768
     Return Value
