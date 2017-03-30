@@ -5,9 +5,11 @@ Static Public NewFileName As String = User.Home &/ "Documents/3C (copy).wav"
 
 Static Public Sub Main()
 
-  Dim WavFile As WavFile = WavFileReader.ReadFile(Me.FileName)
+  Dim Model As WavFile = WavFile.GetNewTemplate()
 
-  WavFileWriter.WriteFile(WavFile, NewFileName)
+  Model.AppendWavFile(FileName)
+
+  WavFileWriter.WriteFile(Model, NewFileName)
 
   Assert.Reset
   FileComparer.Compare(NewFileName, FileName)

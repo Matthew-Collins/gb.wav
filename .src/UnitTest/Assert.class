@@ -1,8 +1,15 @@
 ' Gambas class file
 
+Static Public Overall As Boolean
 Static Public Section As String
 Static Public Test As String
 Static Public Part As String
+
+Static Public Sub Reset()
+
+  Overall = True
+
+End
 
 Static Public Function IsTrue(Value As Boolean, Comment As String) As Boolean
 
@@ -15,6 +22,7 @@ Static Public Function IsTrue(Value As Boolean, Comment As String) As Boolean
   If Value Then
     Print ""
   Else
+    Overall = False
     Print Comment
   Endif
 
@@ -46,9 +54,16 @@ Static Public Function IsNotExpected(Actual As String, Expected As String, Comme
   Dim Result As Boolean = IsFalse(Actual = Expected, Comment)
 
   If Not Result Then
+    Overall = False
     Print "Actual:   " & Actual
     Print "Expected: " & Expected
   Endif
   Return Result
+
+End
+
+Static Public Sub PrintOverall()
+
+  Print If(Overall, "[  Pass  ]", "[ Failed ]") & " Overall"
 
 End

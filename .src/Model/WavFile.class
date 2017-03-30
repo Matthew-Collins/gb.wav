@@ -8,6 +8,20 @@ Public FormatChunks As New WavChunkFormat[]
 Public DataChunks As New WavChunkData[]
 Public FactChunks As New WavChunkFact[]
 
+Static Public Function GetNewTemplate() As WavFile
+
+  Dim Model As New WavFile
+
+  Model.GroupID = "RIFF"
+  Model.RiffType = "WAVE"
+
+  Model.FormatChunks.Add(WavChunkFormat.GetNewTemplate())
+  Model.DataChunks.Add(WavChunkData.GetNewTemplate())
+
+  Return Model
+
+End
+
 Public Function NewFileLength() As Long
 
   Dim ReturnValue As Long
@@ -54,6 +68,20 @@ Public Sub Mute_Stereo_Right()
   For Each DataChunk In Me.DataChunks
     For x = 1 To DataChunk.ShortArray.Count - 1 Step 2
       DataChunk.ShortArray[x] = 0
+    Next
+  Next
+
+End
+
+Public Sub AppendWavFile(FileName As String)
+
+  Dim NewFile As WavFile = WavFileReader.ReadFile(FileName)
+  Dim Data As WavChunkData
+  Dim Value As Short
+
+  For Each Data In NewFile.DataChunks
+    For Each Value In Data.ShortArray
+      Me.DataChunks[0].ShortArray.Add(Value)
     Next
   Next
 

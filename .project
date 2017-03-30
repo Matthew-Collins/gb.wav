@@ -1,7 +1,7 @@
 # Gambas Project File 3.0
 # Compiled with Gambas 3.9.2
 Title=gb.wav
-Startup=Test_002_Write_Wav_File
+Startup=Test_007_Create_OdeToJoy_WavFile
 Version=0.0.5
 TabSize=2
 Translate=1

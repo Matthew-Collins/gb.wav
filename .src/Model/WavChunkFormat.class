@@ -8,3 +8,22 @@ Public SamplesPerSec As Long  'Frequency Of the audio In Hz
 Public AvgBytesPerSec As Long 'For estimating RAM allocation
 Public BlockAlign As Integer 'Sample frame size In bytes
 Public BitsPerSample As Integer 'Bits per sample
+
+Static Public Function GetNewTemplate() As WavChunkFormat
+
+  Dim Model As New WavChunkFormat
+
+  With Model
+    .ChunkId = "fmt "
+    .ChunkSize = 16
+    .FormatTag = 1
+    .Channels = 2
+    .SamplesPerSec = 11025
+    .AvgBytesPerSec = 44100
+    .BlockAlign = 4
+    .BitsPerSample = 16
+  End With
+
+  Return Model
+
+End

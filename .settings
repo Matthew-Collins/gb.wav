@@ -1,6 +1,5 @@
 [Bookmarks]
 WavFile=[7]
-WavFileWriter=[]
 
 [Breakpoints]
 Count=0
@@ -88,6 +87,12 @@ Geometry=[424,389,487,280]
 
 [DebugWindow/Model.FormatChunks]
 Geometry=[424,389,487,280]
+
+[DebugWindow/WavFile]
+Geometry=[840,379,430,280]
+
+[DebugWindow/WavFile.GetNewTemplate()]
+Geometry=[848,387,673,280]
 
 [DebugWindow/Wave1]
 Geometry=[-8,-8,224,280]

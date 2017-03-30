@@ -6,6 +6,16 @@ Inherits WavChunk
 Public ByteArray As New Byte[] '8 bit unsigned data; or...
 Public ShortArray As New Short[] '16 bit signed data
 
+Static Public Function GetNewTemplate() As WavChunkData
+
+  Dim Model As New WavChunkData
+
+  Model.ChunkId = "data"
+
+  Return Model
+
+End
+
 Public Function NewChunkSize() As Long
 
   If Me.ShortArray.Count > 0 Then
