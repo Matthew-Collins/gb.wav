@@ -6,7 +6,7 @@ Static Public NewFileName As String = User.Home &/ "Documents/Ode to Joy.wav"
 
 Static Public Sub Main()
 
-  Dim WavFile As WavFile = ImportBasicCSV.AppendWavFile(Me.FileName, Me.NotesFolder)
+  Dim WavFile As WavFile = ImportBasicCSV.MergeWavFile(Me.FileName, Me.NotesFolder)
 
   WavFileWriter.WriteFile(WavFile, NewFileName)
 

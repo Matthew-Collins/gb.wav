@@ -1,6 +1,6 @@
 ' Gambas class file
 
-Static Public Function CreateWavFile(FileName As String, NotesFolder As String) As WavFile
+Static Public Function AppendWavFile(FileName As String, NotesFolder As String) As WavFile
 
   Dim Model As WavFile = WavFile.GetNewTemplate()
   Dim Text As String
@@ -21,7 +21,37 @@ Static Public Function CreateWavFile(FileName As String, NotesFolder As String) 
 
       End If
     Next
-    'sToPlay.Add("|")
+  Next
+
+  Return Model
+
+End
+
+Static Public Function MergeWavFile(FileName As String, NotesFolder As String) As WavFile
+
+  Dim Model As WavFile = WavFile.GetNewTemplate()
+  Dim Text As String
+  Dim Bar As String
+  Dim Note As String
+  Dim Gap As Byte
+  Dim Offset As Integer
+
+  Text = File.Load(FileName)
+
+  For Each Bar In Split(Text, gb.NewLine)
+    For Each Note In Split(Bar)
+      Note = Trim(Note)
+      If Note
+
+        Gap = CByte(Right(Note, 1))
+        Note = Left(Note, 2)
+
+        Model.MergeWavFile(NotesFolder &/ Trim(Note) & ".wav", Offset)
+
+        OffSet += Gap
+
+      End If
+    Next
   Next
 
   Return Model

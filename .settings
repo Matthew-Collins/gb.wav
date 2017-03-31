@@ -1,5 +1,6 @@
 [Bookmarks]
 WavFile=[7]
+ImportBasicCSV=[]
 
 [Breakpoints]
 Count=0
@@ -87,6 +88,24 @@ Geometry=[424,389,487,280]
 
 [DebugWindow/Model.FormatChunks]
 Geometry=[424,389,487,280]
+
+[DebugWindow/NewFile]
+Geometry=[848,387,549,280]
+
+[DebugWindow/NewFile.DataChunks]
+Geometry=[862,401,549,280]
+
+[DebugWindow/NewFile.DataChunks[0]]
+Geometry=[876,415,549,280]
+
+[DebugWindow/NewFile.DataChunks[0].ShortArray]
+Geometry=[890,429,549,280]
+
+[DebugWindow/NewFile.FormatChunks]
+Geometry=[862,401,549,280]
+
+[DebugWindow/NewFile.FormatChunks[0]]
+Geometry=[876,415,549,280]
 
 [DebugWindow/WavFile]
 Geometry=[840,379,430,280]

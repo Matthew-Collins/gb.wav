@@ -86,3 +86,28 @@ Public Sub AppendWavFile(FileName As String)
   Next
 
 End
+
+Public Sub MergeWavFile(FileName As String, Offset As Integer)
+
+  Dim NewFile As WavFile = WavFileReader.ReadFile(FileName)
+  Dim Data As WavChunkData
+  Dim Value As Short
+  Dim Position As Float
+
+  Position = CInt(Offset / 8 * 11025 * 2)
+
+  For Each Data In NewFile.DataChunks
+    For Each Value In Data.ShortArray
+
+      If Me.DataChunks[0].ShortArray.Count - 1 >= Position Then
+        Me.DataChunks[0].ShortArray[Position] += Value
+      Else
+        Me.DataChunks[0].ShortArray.Add(Value)
+      Endif
+
+      Position += 1
+
+    Next
+  Next
+
+End
