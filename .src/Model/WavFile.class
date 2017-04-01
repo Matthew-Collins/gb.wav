@@ -100,7 +100,7 @@ Public Sub MergeWavFile(FileName As String, Offset As Integer)
     For Each Value In Data.ShortArray
 
       If Me.DataChunks[0].ShortArray.Count - 1 >= Position Then
-        Me.DataChunks[0].ShortArray[Position] += Value
+        Me.DataChunks[0].ShortArray[Position] = Combine(Me.DataChunks[0].ShortArray[Position], Value)
       Else
         Me.DataChunks[0].ShortArray.Add(Value)
       Endif
@@ -109,5 +109,19 @@ Public Sub MergeWavFile(FileName As String, Offset As Integer)
 
     Next
   Next
+
+End
+
+Public Function Combine(Value1 As Integer, Value2 As Integer) As Short
+
+  Dim Total As Integer = Value1 + Value2
+
+  If Total > 32767
+    Return 32767
+  Else If Total < -32768
+    Return -32768
+  Else
+    Return Total
+  End If
 
 End

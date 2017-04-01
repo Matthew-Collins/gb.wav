@@ -17,7 +17,7 @@ Static Public Function AppendWavFile(FileName As String, NotesFolder As String) 
 
         Gap = CByte(Right(Note, 1))
         Note = Left(Note, 2)
-        Model.AppendWavFile(NotesFolder &/ Trim(Note) & ".wav")
+        Model.AppendWavFile(NotesFolder &/ Note & ".wav")
 
       End If
     Next
@@ -46,13 +46,54 @@ Static Public Function MergeWavFile(FileName As String, NotesFolder As String) A
         Gap = CByte(Right(Note, 1))
         Note = Left(Note, 2)
 
-        Model.MergeWavFile(NotesFolder &/ Trim(Note) & ".wav", Offset)
+        Model.MergeWavFile(NotesFolder &/ Note & ".wav", Offset)
 
         OffSet += Gap
 
       End If
     Next
   Next
+
+  Return Model
+
+End
+
+Static Public Function MergeWavFile_v2(FileName As String, NotesFolder As String) As WavFile
+
+  Dim Model As WavFile = WavFile.GetNewTemplate()
+  Dim Text As String
+  Dim Chrod As String
+  Dim Data As String[]
+  Dim Gap As Byte
+  Dim Index As Integer
+  Dim Note As String
+  Dim Offset As Integer
+
+  Text = File.Load(FileName)
+
+  For Each Chrod In Split(Text, gb.NewLine)
+    Chrod = Trim(Chrod)
+    If Chrod Then
+      Data = Split(Chrod)
+
+      Gap = Data[0]
+
+      For Index = 1 To Data.Count - 1
+        Note = Trim(Data[Index])
+        If Note Then
+          Model.MergeWavFile(NotesFolder &/ Note & ".wav", Offset)
+        End If
+      Next
+
+      OffSet += Gap
+    End If
+  Next
+
+  ' With Model.DataChunks[0]
+  '   .ShowLimits
+  '   .CleanLimits
+  '   .ShowLimits
+  ' End With
 
   Return Model
 

@@ -174,7 +174,9 @@ Geometry=[18,20,419,280]
 Path="gb.wav.gambas"
 
 [OpenFile]
-Count=0
+Count=1
+Active=1
+File[1]=".src/Model/WavFile.class:0.113"
 
 [Watches]
 Count=0

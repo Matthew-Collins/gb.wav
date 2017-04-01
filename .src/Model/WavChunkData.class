@@ -25,3 +25,42 @@ Public Function NewChunkSize() As Long
   End If
 
 End
+
+Public Sub ShowLimits()
+
+  Dim Max As Short
+  Dim Min As Short
+  Dim Value As Short
+
+  For Each Value In Me.ShortArray
+    If Value > Max Then
+      Max = Value
+    Endif
+    If Value < Min Then
+      Min = Value
+    Endif
+  Next
+
+  Print "Max: " & Max
+  Print "Min: " & Min
+
+End
+
+Public Sub CleanLimits()
+
+  Dim Max As Short = 8000
+  Dim Min As Short = -8000
+  Dim Index As Integer
+  Dim Value As Short
+
+  For Index = 0 To Me.ShortArray.Count - 1
+    Value = Me.ShortArray[Index]
+    If Value > Max Then
+      Me.ShortArray[Index] = Max
+    Endif
+    If Value < Min Then
+      Me.ShortArray[Index] = Min
+    Endif
+  Next
+
+End
