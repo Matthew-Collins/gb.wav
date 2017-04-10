@@ -77,13 +77,16 @@ Static Public Function MergeWavFile_v2(FileName As String, NotesFolder As String
       Data = Split(Chrod)
 
       Gap = Data[0]
-
-      For Index = 1 To Data.Count - 1
-        Note = Trim(Data[Index])
-        If Note Then
-          Model.MergeWavFile(NotesFolder &/ Note & ".wav", Offset)
-        End If
-      Next
+      If Data.Count = 1
+        Model.AddPause(Gap)
+      Else
+        For Index = 1 To Data.Count - 1
+          Note = Trim(Data[Index])
+          If Note Then
+            Model.MergeWavFile(NotesFolder &/ Note & ".wav", Offset)
+          End If
+        Next
+      End If
 
       OffSet += Gap
     End If

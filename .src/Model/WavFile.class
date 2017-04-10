@@ -112,7 +112,17 @@ Public Sub MergeWavFile(FileName As String, Offset As Integer)
 
 End
 
-Public Function Combine(Value1 As Integer, Value2 As Integer) As Short
+Public Sub AddPause(Gap As Integer)
+
+  Dim Index As Integer
+
+  For Index = 0 To CInt(Gap / 8 * 11025 * 2)
+    Me.DataChunks[0].ShortArray.Add(0)
+  Next
+
+End
+
+Static Public Function Combine(Value1 As Integer, Value2 As Integer) As Short
 
   Dim Total As Integer = Value1 + Value2
 

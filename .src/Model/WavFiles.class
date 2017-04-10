@@ -10,7 +10,7 @@ Public Sub Merge(FileName As String)
 
   For x = 1 To Me.Files.Count - 1
     For y = 0 To Base.DataChunks[0].ShortArray.Count - 1
-      Base.DataChunks[0].ShortArray[y] += Me.Files[x].DataChunks[0].ShortArray[y]
+      Base.DataChunks[0].ShortArray[y] = WavFile.Combine(Base.DataChunks[0].ShortArray[y], Me.Files[x].DataChunks[0].ShortArray[y])
     Next
   Next
 

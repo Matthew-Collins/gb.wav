@@ -1,0 +1,13 @@
+' Gambas class file
+
+Static Public FileName As String = "Song/Moonlight Sonata.csv"
+Static Public NotesFolder As String = "Piano"
+Static Public NewFileName As String = User.Home &/ "Documents/Moonlight Sonata.wav"
+
+Static Public Sub Main()
+
+  Dim WavFile As WavFile = ImportBasicCSV.MergeWavFile_v2(Me.FileName, Me.NotesFolder)
+
+  WavFileWriter.WriteFile(WavFile, NewFileName)
+
+End
