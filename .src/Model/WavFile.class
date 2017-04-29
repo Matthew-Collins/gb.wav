@@ -93,6 +93,7 @@ Public Sub MergeWavFile(FileName As String, Offset As Integer)
   Dim Data As WavChunkData
   Dim Value As Short
   Dim Position As Integer
+  Dim x As Integer
 
   Position = CInt(Offset / 8 * 11025 * 2)
   Print Position
@@ -103,6 +104,9 @@ Public Sub MergeWavFile(FileName As String, Offset As Integer)
       If Me.DataChunks[0].ShortArray.Count - 1 >= Position Then
         Me.DataChunks[0].ShortArray[Position] = Combine(Me.DataChunks[0].ShortArray[Position], Value)
       Else
+        For x = Me.DataChunks[0].ShortArray.Count To Position - 1
+          Me.DataChunks[0].ShortArray.Add(0)
+        Next
         Me.DataChunks[0].ShortArray.Add(Value)
       Endif
 
