@@ -92,9 +92,10 @@ Public Sub MergeWavFile(FileName As String, Offset As Integer)
   Dim NewFile As WavFile = WavFileReader.ReadFile(FileName)
   Dim Data As WavChunkData
   Dim Value As Short
-  Dim Position As Float
+  Dim Position As Integer
 
   Position = CInt(Offset / 8 * 11025 * 2)
+  Print Position
 
   For Each Data In NewFile.DataChunks
     For Each Value In Data.ShortArray

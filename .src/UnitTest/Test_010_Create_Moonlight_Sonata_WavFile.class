@@ -6,8 +6,10 @@ Static Public NewFileName As String = User.Home &/ "Documents/Moonlight Sonata.w
 
 Static Public Sub Main()
 
-  Dim WavFile As WavFile = ImportBasicCSV.MergeWavFile_v2(Me.FileName, Me.NotesFolder)
+  Dim WavFile As WavFile = ImportBasicCSV.MergeWavFile_v2(Me.FileName, Me.NotesFolder, 1)
 
   WavFileWriter.WriteFile(WavFile, NewFileName)
+
+  Sound.Load(NewFileName).Play
 
 End

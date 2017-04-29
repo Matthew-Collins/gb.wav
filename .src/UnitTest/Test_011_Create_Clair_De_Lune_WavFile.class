@@ -1,0 +1,15 @@
+' Gambas class file
+
+Static Public FileName As String = "Song/Clair De Lune.csv"
+Static Public NotesFolder As String = "Piano"
+Static Public NewFileName As String = User.Home &/ "Documents/Clair De Lune.wav"
+
+Static Public Sub Main()
+
+  Dim WavFile As WavFile = ImportBasicCSV.MergeWavFile_v2(Me.FileName, Me.NotesFolder, 2)
+
+  WavFileWriter.WriteFile(WavFile, NewFileName)
+
+  Sound.Load(NewFileName).Play
+
+End

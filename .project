@@ -1,8 +1,9 @@
 # Gambas Project File 3.0
 # Compiled with Gambas 3.9.2
 Title=gb.wav
-Startup=Test_010_Create_Moonlight_Sonata_WavFile
+Startup=Test_011_Create_Clair_De_Lune_WavFile
 Version=0.0.5
+Component=gb.sdl2.audio
 TabSize=2
 Translate=1
 Language=en_US

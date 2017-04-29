@@ -13,7 +13,6 @@ Static Public Function ReadFile(FileName As String) As WavFile
   Dim FactChunk As WavChunkFact
   Dim ChunkId As String
   Dim x As Integer
-  Dim Data As Byte
 
   DataFile = Open FileName For Read
 
