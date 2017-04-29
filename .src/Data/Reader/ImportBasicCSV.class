@@ -82,7 +82,7 @@ Static Public Function MergeWavFile_v2(FileName As String, NotesFolder As String
         For Index = 1 To Data.Count - 1
           Note = Trim(Data[Index])
           If Note Then
-            Print Offset;; Note;;
+            Print Offset;; Note
             Model.MergeWavFile(NotesFolder &/ Note & ".wav", Offset)
           End If
         Next

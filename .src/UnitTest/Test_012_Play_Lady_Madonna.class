@@ -1,0 +1,12 @@
+' Gambas class file
+
+Static Public FileName As String = "Song/Lady Madonna.csv"
+Static Public NotesFolder As String = "Piano"
+
+Static Public Sub Main()
+
+  WavFilePlayer.PlaySong(Me.FileName, Me.NotesFolder, 1)
+
+  Print "Done"
+
+End

@@ -1,7 +1,7 @@
 # Gambas Project File 3.0
 # Compiled with Gambas 3.9.2
 Title=gb.wav
-Startup=Test_011_Create_Clair_De_Lune_WavFile
+Startup=Test_012_Play_Lady_Madonna
 Version=0.0.5
 Component=gb.sdl2.audio
 TabSize=2

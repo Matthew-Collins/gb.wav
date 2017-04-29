@@ -1,5 +1,7 @@
 [Bookmarks]
 WavFile=[7]
+ImportBasicCSV=[]
+Test_012_Play_Lady_Madonna=[]
 
 [Breakpoints]
 Count=0
@@ -176,7 +178,10 @@ Geometry=[18,20,419,280]
 Path="gb.wav.gambas"
 
 [OpenFile]
-Count=0
+Count=2
+File[1]=".src/UnitTest/Test_012_Play_Lady_Madonna.class:21.7"
+Active=2
+File[2]=".src/Data/Reader/WavFilePlayer.class:21.14"
 
 [Watches]
 Count=0

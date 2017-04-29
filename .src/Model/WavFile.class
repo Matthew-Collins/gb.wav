@@ -96,7 +96,7 @@ Public Sub MergeWavFile(FileName As String, Offset As Integer)
   Dim x As Integer
 
   Position = CInt(Offset / 8 * 11025 * 2)
-  Print Position
+  'Print Position
 
   For Each Data In NewFile.DataChunks
     For Each Value In Data.ShortArray

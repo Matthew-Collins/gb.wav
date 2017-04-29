@@ -1,0 +1,37 @@
+' Gambas class file
+
+Static Public Sub PlaySong(FileName As String, NotesFolder As String, Speed As Float)
+
+  Dim Text As String
+  Dim Chrod As String
+  Dim Data As String[]
+  Dim Gap As Float
+  Dim Index As Integer
+  Dim Note As String
+  Dim UniqueChannel As Integer
+
+  Text = File.Load(FileName)
+
+  Channels.Count = 25
+
+  For Each Chrod In Split(Text, gb.NewLine)
+    Chrod = Trim(Chrod)
+    If Chrod And If Not (Left(Chrod, 1) = "'")
+      Data = Split(Chrod)
+
+      Gap = Data[0] * Speed
+
+      For Index = 1 To Data.Count - 1
+        Note = Trim(Data[Index])
+        If Note Then
+          Print Note
+          Channels[UniqueChannel].Play(Sound.Load(NotesFolder &/ Note & ".wav"))
+          UniqueChannel += 1
+        End If
+      Next
+
+      Wait Gap * 0.1
+    End If
+  Next
+
+End
